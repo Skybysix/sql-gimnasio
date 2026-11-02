@@ -27,8 +27,25 @@ Imagino que porque el identificador no pretendemos modificarlo de ninguna forma,
 |---|---|---|---|
 | planes – socios | muchos | Uno | 1:N |
 | socios – tarjetas | Una | Una |1:1 |
-| monitores – clases | Una o varias | Una |N:1 |
+| monitores – clases | Una o varias | Una | 1:N |
 | socios – clases | Muchas | Muchas | N:M |
 | monitores – especialidades | Muchas |  Muchas | N:M |
 
 ---
+
+1.Un monitor, ¿cuantas clases puede imaprtir? 
+
+MUCHAS
+Una clase, ¿cuantos monitores puede tener?
+
+UNO
+2. ¿En qué tabla va la clave ajena? ¿Cómo la llamarías?
+En la tabla de clases. Tabla_clases 
+
+3. Dibuja (en una tabla Markdown) cómo quedaría si la pusieras en el lado equivocado y explica en una frase por qué falla.
+Solo se puede guardar un id en la clave ajena. Si se coloca en el lado equivocado, habría que volver a crear una columna con el monitor y su id repitiendolo para indicar que otras clases adicionales da.
+4. 
+Sí, necesita que haya un valor dentro sí o sí
+5. 
+Primero hay que crear la tabla de monitores
+
