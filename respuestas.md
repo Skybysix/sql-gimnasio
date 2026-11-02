@@ -25,6 +25,6 @@ Imagino que porque el identificador no pretendemos modificarlo de ninguna forma,
 | socios – tarjetas | Una | Una |1:1 |
 | monitores – clases | Una o varias | Una |N:1 |
 | socios – clases | Muchas | Muchas | N:M |
-| monitores – especialidades | Muchas |  Muchas | Muchos | N:M |
+| monitores – especialidades | Muchas |  Muchas | N:M |
 
 ---
