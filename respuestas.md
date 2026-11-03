@@ -102,3 +102,5 @@ Evita que se repita la especialidad y el monitore a la vez un monitor pueda tene
 Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el programa conecte ambas claves ajenas.
 
 ### Ejercicio A6
+
+1. 
