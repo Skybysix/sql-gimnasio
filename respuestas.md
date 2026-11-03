@@ -140,3 +140,21 @@ Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el prog
 ### Ejercicio A6
 
 1\.
+
+
+### Ejercicio B3
+1\.
+
+Va a fallar porque no existe el id 99
+
+ERROR:  insert or update on table "socios" violates foreign key constraint "socios_plan_id_fkey"
+DETAIL:  Key (plan_id)=(99) is not present in table "planes".
+
+ERROR: insertar o actualizar en la tabla "socios" viola la restricción de clave ajena "socios_plan_id_fkey"
+DETAIL: La clave (plan_id) = (99) no está presente en la tabla planes,
+
+No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios.
+
+2\.
+
+
