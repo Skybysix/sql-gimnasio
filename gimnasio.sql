@@ -153,6 +153,11 @@ VALUES
     (4, 5);
 
     /*B3*/
+
 -- B3.1 Un socio con un plan que no existe
 INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
 VALUES ('99999999Z', 'Nora Prueba', 'nora@gym.com', '2026-10-27', 99);
+
+-- B3.2 Un socio con el email de Ana
+INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
+VALUES ('99999999Z', 'Nora Prueba', 'ana@gym.com', '2026-10-27', 1);

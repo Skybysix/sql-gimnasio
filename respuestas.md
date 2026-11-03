@@ -143,18 +143,31 @@ Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el prog
 
 
 ### Ejercicio B3
-1\.
+1\.INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
+VALUES ('99999999Z', 'Nora Prueba', 'nora@gym.com', '2026-10-27', 99);
 
-Va a fallar porque no existe el id 99
+    a\.Qué creo que pasará:
 
-ERROR:  insert or update on table "socios" violates foreign key constraint "socios_plan_id_fkey"
-DETAIL:  Key (plan_id)=(99) is not present in table "planes".
+    Va a fallar porque no existe el id 99
 
-ERROR: insertar o actualizar en la tabla "socios" viola la restricción de clave ajena "socios_plan_id_fkey"
-DETAIL: La clave (plan_id) = (99) no está presente en la tabla planes,
+    b\.Código de error y explicación:
 
-No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios.
+    DETAIL:  Key (plan_id)=(99) is not present in table "planes".
 
-2\.
+    ERROR: insertar o actualizar en la tabla "socios" viola la restricción de clave ajena "socios_plan_id_fkey"
+    DETAIL: La clave (plan_id) = (99) no está presente en la tabla planes,
+
+    No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios.
+
+2\.INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
+VALUES ('99999999Z', 'Nora Prueba', 'ana@gym.com', '2026-10-27', 1);
+    a\.Qué creo que pasará:
+
+    Va a fallar porque no se puede repetir un correo electrónico al ingresar un socio nuevo
+
+    b\.Código de error y explicación:
+    
+
+
 
 
