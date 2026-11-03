@@ -33,19 +33,72 @@ Imagino que porque el identificador no pretendemos modificarlo de ninguna forma,
 
 ---
 
-1.Un monitor, ¿cuantas clases puede imaprtir? 
-
+### Ejercicio A3
+1. Un monitor, ¿cuantas clases puede impartir? 
 MUCHAS
 Una clase, ¿cuantos monitores puede tener?
-
 UNO
 2. ¿En qué tabla va la clave ajena? ¿Cómo la llamarías?
 En la tabla de clases. Tabla_clases 
 
 3. Dibuja (en una tabla Markdown) cómo quedaría si la pusieras en el lado equivocado y explica en una frase por qué falla.
 Solo se puede guardar un id en la clave ajena. Si se coloca en el lado equivocado, habría que volver a crear una columna con el monitor y su id repitiendolo para indicar que otras clases adicionales da.
-4. 
-Sí, necesita que haya un valor dentro sí o sí
-5. 
+4. ¿Debe ser NOT NULL? ¿Por qué?
+Sí, necesita que haya un valor dentro sí o sí, sino da error
+5. ¿Qué tabla hay que crear primero?
 Primero hay que crear la tabla de monitores
 
+### Ejercicio A4
+
+1. ¿Qué pasaría si quitásemos UNIQUE de socio_id? Explícalo con un ejemplo de datos.
+Se volvería una relación 1:N. Un socio podría tener varias tarjetas a la vez
+
+2. Hay dos columnas UNIQUE en tarjetas. ¿Qué evita cada una?
+En la primera se evita que hayan varios códigos identificativos en las tarjetas y en la segunda se evita que el socio tenga varias.
+
+3. Inventa otra relación 1:1 de la vida real (fuera del gimnasio) y di en qué tabla pondrías la clave ajena.
+La tarjeta consum. Sólo una única tarjeta puede pertenecer a un usuario con su dni.
+
+### Ejercicio A5
+1. Un monitor, ¿cuántas especialidades puede tener?
+MUCHAS
+Una especialidad, ¿cuántos monitores puede tener?
+MUCHOS
+2. ¿Qué tablas necesitas? Ponles nombre.
+Tabla 1- Monitores
+Tabla2- Especialidades
+Tabla 3 - Especialidades_monitores
+
+3. Escribe las columnas de cada tabla y marca cuál es PK, cuál UNIQUE y cuál FK.
+### Tabla `monitores`
+
+| Columna | Restricción |
+|---|---|
+| `id` | PK |
+| `dni` | UNIQUE |
+| `nombre` | NOT NULL |
+| `email` | UNIQUE |
+
+### Tabla `especialidades`
+
+| Columna | Restricción |
+|---|---|
+| `id` | PK |
+| `nombre` | UNIQUE, NOT NULL |
+
+### Tabla `especialidades_monitores`
+
+| Columna | Restricción |
+|---|---|
+| `id` | PK |
+| `monitor_id` | FK → `monitores(id)` |
+| `especialidad_id` | FK → `especialidades(id)` |
+| `monitor_id` + `especialidad_id` | UNIQUE (combinación) |
+
+4. ¿Qué evita el UNIQUE de la tabla intermedia?
+Evita que se repita la especialidad y el monitore a la vez un monitor pueda tener varias especialidades.
+
+5. ¿Qué tienen en común reservas y tu tabla intermedia? ¿En qué se diferencian?
+Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el programa conecte ambas claves ajenas.
+
+### Ejercicio A6
