@@ -1,8 +1,8 @@
-**# PARTE A — Pensar antes de escribir SQL**
+# PARTE A — Pensar antes de escribir SQL
 
 ---
 
-**### Ejercicio A1**
+### Ejercicio A1
 
 Mirando la tabla de arriba:
 
@@ -26,7 +26,7 @@ Imagino que porque el identificador no pretendemos modificarlo de ninguna forma,
 
 ---
 
-**### Ejercicio A2**
+### Ejercicio A2
 
 | Pareja | Un A, ¿cuántos B? | Un B, ¿cuántos A? | Relación |
 |---|---|---|---|
@@ -38,7 +38,7 @@ Imagino que porque el identificador no pretendemos modificarlo de ninguna forma,
 
 ---
 
-**### Ejercicio A3**
+### Ejercicio A3
 
 1\. Un monitor, ¿cuantas clases puede impartir?
 
@@ -66,7 +66,7 @@ Primero hay que crear la tabla de monitores
 
 ---
 
-**### Ejercicio A4**
+### Ejercicio A4
 
 1\. ¿Qué pasaría si quitásemos UNIQUE de socio_id? Explícalo con un ejemplo de datos.
 
@@ -82,7 +82,7 @@ La tarjeta consum. Sólo una única tarjeta puede pertenecer a un usuario con su
 
 ---
 
-**### Ejercicio A5**
+### Ejercicio A5
 
 1\. Un monitor, ¿cuántas especialidades puede tener?
 
@@ -102,7 +102,7 @@ Tabla 3 - Especialidades_monitores
 
 3\. Escribe las columnas de cada tabla y marca cuál es PK, cuál UNIQUE y cuál es FK.
 
-**### Tabla `monitores`**
+### Tabla `monitores`
 
 | Columna | Restricción |
 |---|---|
@@ -111,14 +111,14 @@ Tabla 3 - Especialidades_monitores
 | `nombre` | NOT NULL |
 | `email` | UNIQUE |
 
-**### Tabla `especialidades`**
+### Tabla `especialidades`
 
 | Columna | Restricción |
 |---|---|
 | `id` | PK |
 | `nombre` | UNIQUE, NOT NULL |
 
-**### Tabla `especialidades_monitores`**
+### Tabla `especialidades_monitores`
 
 | Columna | Restricción |
 |---|---|
@@ -137,6 +137,6 @@ Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el prog
 
 ---
 
-**### Ejercicio A6**
+### Ejercicio A6
 
 1\.
