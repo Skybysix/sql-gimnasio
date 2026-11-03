@@ -157,17 +157,70 @@ VALUES ('99999999Z', 'Nora Prueba', 'nora@gym.com', '2026-10-27', 99);
     ERROR: insertar o actualizar en la tabla "socios" viola la restricción de clave ajena "socios_plan_id_fkey"
     DETAIL: La clave (plan_id) = (99) no está presente en la tabla planes,
 
-    No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios.
+    (No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios).
 
 2\.INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
 VALUES ('99999999Z', 'Nora Prueba', 'ana@gym.com', '2026-10-27', 1);
+
     a\.Qué creo que pasará:
 
     Va a fallar porque no se puede repetir un correo electrónico al ingresar un socio nuevo
 
     b\.Código de error y explicación:
-    
+
+    ERROR: Valor de clave duplicado que infringe la restricción de unicidad socios_email_key.
+    DETAIL: La clave (email) = (ana@gym.com) ya existe.
+    (El correo de ana@gym.com ya existe y no se puede duplicar esa clave).
+
+3\.INSERT INTO tarjetas (codigo, activa, socio_id)
+VALUES ('TJ-0099', TRUE, 1);
+
+    a\.Qué creo que pasará:
+
+    Solo un socio puede tener una tarjeta
+
+    b\.Código de error y explicación:
+
+    ERROR: Valor de clave duplicado que infringe la restricción de unicidad tarjetas_socio_id_key.
+    DETAIL: La clave (socio_id) = (1) ya existe.
+    (No se puede duplicar la clave porque solo un socio puede tener una tarjeta)
 
 
+4\.
+
+    a\.Qué creo que pasará:
+    Ya hay una informacion en una tabla 
+
+    b\.Código de error y explicación:
+
+
+5\.
+
+    a\.Qué creo que pasará:
+
+
+    b\.Código de error y explicación:
+
+
+6\.
+
+    a\.Qué creo que pasará:
+
+
+    b\.Código de error y explicación:
+
+7\.
+
+    a\.Qué creo que pasará:
+
+
+    b\.Código de error y explicación:
+
+8\.
+
+    a\.Qué creo que pasará:
+
+
+    b\.Código de error y explicación:
 
 
