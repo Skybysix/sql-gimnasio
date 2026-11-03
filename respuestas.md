@@ -1,27 +1,32 @@
-# PARTE A — Pensar antes de escribir SQL
+**# PARTE A — Pensar antes de escribir SQL**
 
-### Ejercicio A1
+---
+
+**### Ejercicio A1**
 
 Mirando la tabla de arriba:
 
-1. ¿Qué columnas no se pueden repetir nunca?
+1\. ¿Qué columnas no se pueden repetir nunca?
 
-ID, DNI y email 
+ID, DNI y email
 
-2. ¿Cuál es la clave primaria? ¿Cuáles son claves alternativas?
+2\. ¿Cuál es la clave primaria? ¿Cuáles son claves alternativas?
 
 Clave primaria - id
-Alternativa - dni y email 
 
-3. ¿Qué columna apunta a otra tabla? ¿A cuál?
+Alternativa - dni y email
+
+3\. ¿Qué columna apunta a otra tabla? ¿A cuál?
 
 La de plan_id, apuntará a otra tabla que tenga ese id
 
-4. El DNI ya identifica a cada socio. ¿Por qué crees que usamos un `id` numérico como clave primaria en vez del DNI? Da al menos una razón.
+4\. El DNI ya identifica a cada socio. ¿Por qué crees que usamos un `id` numérico como clave primaria en vez del DNI? Da al menos una razón.
 
 Imagino que porque el identificador no pretendemos modificarlo de ninguna forma, pero el dni a veces se escribe mal y es necesario hacer determinadas correcciones de vez en cuando. El id también se usa para identificador unico dentro de la base de datos, mientras que el dni sirve como identificador orientativo para la persona que trabaje con esa tabla.
 
-### Ejercicio A2
+---
+
+**### Ejercicio A2**
 
 | Pareja | Un A, ¿cuántos B? | Un B, ¿cuántos A? | Relación |
 |---|---|---|---|
@@ -33,44 +38,71 @@ Imagino que porque el identificador no pretendemos modificarlo de ninguna forma,
 
 ---
 
-### Ejercicio A3
-1. Un monitor, ¿cuantas clases puede impartir? 
-MUCHAS
-Una clase, ¿cuantos monitores puede tener?
-UNO
-2. ¿En qué tabla va la clave ajena? ¿Cómo la llamarías?
-En la tabla de clases. Tabla_clases 
+**### Ejercicio A3**
 
-3. Dibuja (en una tabla Markdown) cómo quedaría si la pusieras en el lado equivocado y explica en una frase por qué falla.
+1\. Un monitor, ¿cuantas clases puede impartir?
+
+MUCHAS
+
+Una clase, ¿cuantos monitores puede tener?
+
+UNO
+
+2\. ¿En qué tabla va la clave ajena? ¿Cómo la llamarías?
+
+En la tabla de clases. Tabla_clases
+
+3\. Dibuja (en una tabla Markdown) cómo quedaría si la pusieras en el lado equivocado y explica en una frase por qué falla.
+
 Solo se puede guardar un id en la clave ajena. Si se coloca en el lado equivocado, habría que volver a crear una columna con el monitor y su id repitiendolo para indicar que otras clases adicionales da.
-4. ¿Debe ser NOT NULL? ¿Por qué?
+
+4\. ¿Debe ser NOT NULL? ¿Por qué?
+
 Sí, necesita que haya un valor dentro sí o sí, sino da error
-5. ¿Qué tabla hay que crear primero?
+
+5\. ¿Qué tabla hay que crear primero?
+
 Primero hay que crear la tabla de monitores
 
-### Ejercicio A4
+---
 
-1. ¿Qué pasaría si quitásemos UNIQUE de socio_id? Explícalo con un ejemplo de datos.
+**### Ejercicio A4**
+
+1\. ¿Qué pasaría si quitásemos UNIQUE de socio_id? Explícalo con un ejemplo de datos.
+
 Se volvería una relación 1:N. Un socio podría tener varias tarjetas a la vez
 
-2. Hay dos columnas UNIQUE en tarjetas. ¿Qué evita cada una?
+2\. Hay dos columnas UNIQUE en tarjetas. ¿Qué evita cada una?
+
 En la primera se evita que hayan varios códigos identificativos en las tarjetas y en la segunda se evita que el socio tenga varias.
 
-3. Inventa otra relación 1:1 de la vida real (fuera del gimnasio) y di en qué tabla pondrías la clave ajena.
+3\. Inventa otra relación 1:1 de la vida real (fuera del gimnasio) y di en qué tabla pondrías la clave ajena.
+
 La tarjeta consum. Sólo una única tarjeta puede pertenecer a un usuario con su dni.
 
-### Ejercicio A5
-1. Un monitor, ¿cuántas especialidades puede tener?
+---
+
+**### Ejercicio A5**
+
+1\. Un monitor, ¿cuántas especialidades puede tener?
+
 MUCHAS
+
 Una especialidad, ¿cuántos monitores puede tener?
+
 MUCHOS
-2. ¿Qué tablas necesitas? Ponles nombre.
+
+2\. ¿Qué tablas necesitas? Ponles nombre.
+
 Tabla 1- Monitores
+
 Tabla2- Especialidades
+
 Tabla 3 - Especialidades_monitores
 
-3. Escribe las columnas de cada tabla y marca cuál es PK, cuál UNIQUE y cuál FK.
-### Tabla `monitores`
+3\. Escribe las columnas de cada tabla y marca cuál es PK, cuál UNIQUE y cuál es FK.
+
+**### Tabla `monitores`**
 
 | Columna | Restricción |
 |---|---|
@@ -79,14 +111,14 @@ Tabla 3 - Especialidades_monitores
 | `nombre` | NOT NULL |
 | `email` | UNIQUE |
 
-### Tabla `especialidades`
+**### Tabla `especialidades`**
 
 | Columna | Restricción |
 |---|---|
 | `id` | PK |
 | `nombre` | UNIQUE, NOT NULL |
 
-### Tabla `especialidades_monitores`
+**### Tabla `especialidades_monitores`**
 
 | Columna | Restricción |
 |---|---|
@@ -95,12 +127,16 @@ Tabla 3 - Especialidades_monitores
 | `especialidad_id` | FK → `especialidades(id)` |
 | `monitor_id` + `especialidad_id` | UNIQUE (combinación) |
 
-4. ¿Qué evita el UNIQUE de la tabla intermedia?
+4\. ¿Qué evita el UNIQUE de la tabla intermedia?
+
 Evita que se repita la especialidad y el monitore a la vez un monitor pueda tener varias especialidades.
 
-5. ¿Qué tienen en común reservas y tu tabla intermedia? ¿En qué se diferencian?
+5\. ¿Qué tienen en común reservas y tu tabla intermedia? ¿En qué se diferencian?
+
 Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el programa conecte ambas claves ajenas.
 
-### Ejercicio A6
+---
 
-1. 
+**### Ejercicio A6**
+
+1\.
