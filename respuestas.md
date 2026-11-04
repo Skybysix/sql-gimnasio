@@ -259,23 +259,126 @@ Porque el 6 tenía un socio insertado y el 7 no.
 
 ### Ejercicio B4
 
-1\. 
+1\. Nombre de cada socio, nombre de su plan y precio. Ordenado por nombre del socio.
 
-2\.
+socio     |    plan    | precio 
+--------------+------------+--------
+ Ana Pérez    | Completo   |  44.90
+ Diego Vidal  | Básico     |  29.90
+ Hugo Sanz    | Completo   |  44.90
+ Lucía Ruiz   | Estudiante |  24.90
+ Luis García  | Básico     |  29.90
+ Marta López  | Estudiante |  24.90
+ Pablo Martín | Básico     |  29.90
+ Sara Gil     | Completo   |  44.90
+(8 rows)
 
-3\.
+2\.Todas las clases con actividad, fecha y hora, sala y nombre del monitor, ordenadas por fecha.
 
-4\.
+actividad |     fecha_hora      |  sala  |    monitor    
+-----------+---------------------+--------+---------------
+ Spinning  | 2026-11-02 09:00:00 | Sala 1 | Carla Navarro
+ Yoga      | 2026-11-02 18:00:00 | Sala 2 | Javier Ortega
+ Pilates   | 2026-11-03 10:00:00 | Sala 2 | Elena Romero
+ Spinning  | 2026-11-03 19:00:00 | Sala 1 | Carla Navarro
+ Zumba     | 2026-11-04 18:30:00 | Sala 3 | Elena Romero
+ Yoga      | 2026-11-05 09:30:00 | Sala 2 | Javier Ortega
+ Crossfit  | 2026-11-05 20:00:00 | Sala 3 | Carla Navarro
+(7 rows)
 
-5\.
+3\.Todos los socios con el código de su tarjeta. Deben salir también los que no tienen tarjeta.
 
-6\.
+   socio     | tarjeta 
+--------------+---------
+ Ana Pérez    | TJ-0001
+ Diego Vidal  | 
+ Hugo Sanz    | TJ-0004
+ Lucía Ruiz   | TJ-0005
+ Luis García  | TJ-0002
+ Marta López  | TJ-0003
+ Pablo Martín | TJ-0006
+ Sara Gil     | TJ-0007
+(8 rows)
 
-7\.
+4\.Solo los socios que no tienen tarjeta.
 
-8\.
+    socio    
+-------------
+ Diego Vidal
+(1 row)
 
-9\.
+5\.Cuántos socios hay en cada plan. Deben salir todos los planes, aunque tengan 0 socios. 
 
-10\.
+    plan    | numero_socios 
+------------+---------------
+ Básico     |             3
+ Completo   |             3
+ Estudiante |             2
+ Mañanas    |             0
+(4 rows)
+
+6\.Lista de reservas: nombre del socio, actividad y fecha y hora de la clase.
+
+    socio     | actividad |     fecha_hora      
+--------------+-----------+---------------------
+ Ana Pérez    | Spinning  | 2026-11-02 09:00:00
+ Luis García  | Spinning  | 2026-11-02 09:00:00
+ Hugo Sanz    | Spinning  | 2026-11-02 09:00:00
+ Luis García  | Yoga      | 2026-11-02 18:00:00
+ Marta López  | Yoga      | 2026-11-02 18:00:00
+ Ana Pérez    | Pilates   | 2026-11-03 10:00:00
+ Lucía Ruiz   | Pilates   | 2026-11-03 10:00:00
+ Pablo Martín | Spinning  | 2026-11-03 19:00:00
+ Marta López  | Zumba     | 2026-11-04 18:30:00
+ Sara Gil     | Zumba     | 2026-11-04 18:30:00
+ Lucía Ruiz   | Zumba     | 2026-11-04 18:30:00
+ Ana Pérez    | Crossfit  | 2026-11-05 20:00:00
+ Sara Gil     | Crossfit  | 2026-11-05 20:00:00
+ Hugo Sanz    | Crossfit  | 2026-11-05 20:00:00
+(14 rows)
+
+7\.Nombres de los socios apuntados a la clase con id 1.
+
+    socio    
+-------------
+ Ana Pérez
+ Hugo Sanz
+ Luis García
+(3 rows)
+
+8\.Para cada clase: actividad, fecha y hora, plazas y número de reservas. Deben salir también las clases sin reservas.
+
+ actividad |     fecha_hora      | plazas | numero_reservas 
+-----------+---------------------+--------+-----------------
+ Spinning  | 2026-11-02 09:00:00 |     12 |               3
+ Yoga      | 2026-11-02 18:00:00 |     10 |               2
+ Pilates   | 2026-11-03 10:00:00 |      8 |               2
+ Spinning  | 2026-11-03 19:00:00 |     12 |               1
+ Zumba     | 2026-11-04 18:30:00 |     20 |               3
+ Yoga      | 2026-11-05 09:30:00 |     10 |               0
+ Crossfit  | 2026-11-05 20:00:00 |      3 |               3
+(7 rows)
+
+9\.Monitores que no dan ninguna clase.
+
+   monitor    
+--------------
+ Rubén Castro
+(1 row)
+
+10\.Cada monitor con sus especialidades (una fila por pareja monitor–especialidad).
+
+    monitor    | especialidad 
+---------------+--------------
+ Carla Navarro | Ciclo indoor
+ Carla Navarro | Fuerza
+ Elena Romero  | Baile
+ Elena Romero  | Pilates
+ Javier Ortega | Pilates
+ Javier Ortega | Yoga
+ Rubén Castro  | Fuerza
+(7 rows)
+
+11\.En la consulta 6, Ana sale tres veces. ¿Es un error? ¿Por qué ocurre?
+No es un error. Ana tiene tres actividades reservadas.
 
