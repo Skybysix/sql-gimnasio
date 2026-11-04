@@ -147,12 +147,7 @@ Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el prog
 
 ### Ejercicio B3
 
-B3.1\.
-
-```sql
-INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
-VALUES ('99999999Z', 'Nora Prueba', 'nora@gym.com', '2026-10-27', 99);
-```
+B3.1\.Un socio con un plan que no existe
 
 a\. Qué creo que pasará:
 
@@ -169,12 +164,7 @@ DETAIL: La clave (plan_id) = (99) no está presente en la tabla planes,
 
 (No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios).
 
-B3.2\.
-
-```sql
-INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
-VALUES ('99999999Z', 'Nora Prueba', 'ana@gym.com', '2026-10-27', 1);
-```
+B3.2\.Un socio con el email de Ana
 
 a\. Qué creo que pasará:
 
@@ -189,12 +179,7 @@ DETAIL: La clave (email) = (ana@gym.com) ya existe.
 
 (El correo de `ana@gym.com` ya existe y no se puede duplicar esa clave).
 
-B3.3\.
-
-```sql
-INSERT INTO tarjetas (codigo, activa, socio_id)
-VALUES ('TJ-0099', TRUE, 1);
-```
+B3.3\.Una segunda tarjeta para Ana
 
 a\. Qué creo que pasará:
 
@@ -209,7 +194,7 @@ DETAIL: La clave (socio_id) = (1) ya existe.
 
 (No se puede duplicar la clave porque solo un socio puede tener una tarjeta).
 
-B3.4\.
+B3.4\.Ana reserva otra vez el Spinning del lunes
 
 a\. Qué creo que pasará:
 
@@ -224,7 +209,7 @@ DETAIL: La combinación de claves (socio_id, clase_id) = (1, 1) ya existe.
 
 (La combinación de claves del socio ya existe en la base de datos).
 
-B3.5\.
+B3.5\.Una reserva para una clase que no existe
 
 a\. Qué creo que pasará:
 
@@ -239,7 +224,7 @@ DETAIL: La clave (clase_id) = (50) no está presente en la tabla clases.
 
 (El id de la clase no existe en la base de datos).
 
-B3.6\.
+B3.6\.Borrar el plan Básico
 
 a\. Qué creo que pasará:
 
@@ -254,7 +239,7 @@ DETAIL: La clave (id) = (1) sigue estando referenciada desde la tabla socios.
 
 (No se puede eliminar el plan porque hay socios asignados en él).
 
-B3.7\.
+B3.7\.Borrar el plan Mañanas
 
 a\. Qué creo que pasará:
 
@@ -268,5 +253,29 @@ DELETE 1
 
 (Se ha eliminado porque no hay socios asignados).
 
-B3.8\.
+B3.8\.B3.6 falla y B3.7 funciona. Los dos son planes. ¿Por qué?
+
+Porque el 6 tenía un socio insertado y el 7 no.
+
+### Ejercicio B3
+
+1\. 
+
+2\.
+
+3\.
+
+4\.
+
+5\.
+
+6\.
+
+7\.
+
+8\.
+
+9\.
+
+10\.
 
