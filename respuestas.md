@@ -147,7 +147,7 @@ Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el prog
 
 ### Ejercicio B3
 
-1\.
+B3.1\.
 
 ```sql
 INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
@@ -169,7 +169,7 @@ DETAIL: La clave (plan_id) = (99) no está presente en la tabla planes,
 
 (No se ha podido insertar a Nora porque porque el plan id no está presente en la tabla planes, solo hay cuatro. No ha habido un actualización en la tabla socios).
 
-2\.
+B3.2\.
 
 ```sql
 INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
@@ -189,7 +189,7 @@ DETAIL: La clave (email) = (ana@gym.com) ya existe.
 
 (El correo de `ana@gym.com` ya existe y no se puede duplicar esa clave).
 
-3\.
+B3.3\.
 
 ```sql
 INSERT INTO tarjetas (codigo, activa, socio_id)
@@ -209,7 +209,7 @@ DETAIL: La clave (socio_id) = (1) ya existe.
 
 (No se puede duplicar la clave porque solo un socio puede tener una tarjeta).
 
-4\.
+B3.4\.
 
 a\. Qué creo que pasará:
 
@@ -224,7 +224,7 @@ DETAIL: La combinación de claves (socio_id, clase_id) = (1, 1) ya existe.
 
 (La combinación de claves del socio ya existe en la base de datos).
 
-5\.
+B3.5\.
 
 a\. Qué creo que pasará:
 
@@ -239,7 +239,7 @@ DETAIL: La clave (clase_id) = (50) no está presente en la tabla clases.
 
 (El id de la clase no existe en la base de datos).
 
-6\.
+B3.6\.
 
 a\. Qué creo que pasará:
 
@@ -254,7 +254,7 @@ DETAIL: La clave (id) = (1) sigue estando referenciada desde la tabla socios.
 
 (No se puede eliminar el plan porque hay socios asignados en él).
 
-7\.
+B3.7\.
 
 a\. Qué creo que pasará:
 
@@ -268,8 +268,5 @@ DELETE 1
 
 (Se ha eliminado porque no hay socios asignados).
 
-8\.
+B3.8\.
 
-a\. Qué creo que pasará:
-
-b\. Código de error y explicación:
