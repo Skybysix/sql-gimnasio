@@ -383,3 +383,196 @@ actividad |     fecha_hora      |  sala  |    monitor
 No es un error. Ana tiene tres actividades reservadas.
 
 ### Ejercicio B5
+
+1\.Luis se cambia al plan Completo. Actualízalo usando su email.
+
+gimnasio=# SELECT *
+FROM socios
+WHERE email = 'luis@gym.com';
+
+ id |    dni    |   nombre    |    email     | fecha_alta | plan_id 
+----+-----------+-------------+--------------+------------+---------
+  2 | 22222222B | Luis García | luis@gym.com | 2026-02-03 |       1
+(1 row)
+
+gimnasio=# UPDATE socios
+SET plan_id = 2
+WHERE email = 'luis@gym.com';
+UPDATE 1
+
+gimnasio=# SELECT *
+FROM socios
+WHERE email = 'luis@gym.com';
+
+ id |    dni    |   nombre    |    email     | fecha_alta | plan_id 
+----+-----------+-------------+--------------+------------+---------
+  2 | 22222222B | Luis García | luis@gym.com | 2026-02-03 |       2
+(1 row)
+
+2\.Hugo ha pagado: activa su tarjeta TJ-0004.
+
+gimnasio=# SELECT *
+FROM tarjetas
+WHERE codigo = 'TJ-0004';
+
+ id | codigo  | activa | socio_id 
+----+---------+--------+----------
+  4 | TJ-0004 | f      |        4
+(1 row)
+
+UPDATE tarjetas
+SET activa = TRUE
+WHERE codigo = 'TJ-0004';
+UPDATE 1
+
+gimnasio=# SELECT *
+FROM tarjetas
+WHERE codigo = 'TJ-0004';
+
+ id | codigo  | activa | socio_id 
+----+---------+--------+----------
+  4 | TJ-0004 | t      |        4
+(1 row)
+
+3\.Dale a Diego la tarjeta TJ-0008 (activa).
+
+gimnasio=# SELECT *
+FROM socios AS s
+LEFT JOIN tarjetas AS t
+    ON s.id = t.socio_id
+WHERE s.email = 'diego@gym.com';
+
+ id |    dni    |   nombre    |     email     | fecha_alta | plan_id | id | codigo | activa | socio_id 
+----+-----------+-------------+---------------+------------+---------+----+--------+--------+----------
+  8 | 88888888H | Diego Vidal | diego@gym.com | 2026-10-01 |       1 |    |        |        |         
+(1 row)
+
+gimnasio=# INSERT INTO tarjetas (codigo, activa, socio_id)
+VALUES ('TJ-0008', TRUE, 8);
+
+INSERT 0 1
+
+gimnasio=# SELECT *
+FROM tarjetas
+WHERE codigo = 'TJ-0008';
+
+ id | codigo  | activa | socio_id 
+----+---------+--------+----------
+  9 | TJ-0008 | t      |        8
+(1 row)
+
+4\.Diego reserva el Yoga del jueves (clase 6) con fecha 2026-11-02.
+
+gimnasio=# SELECT *
+FROM clases
+WHERE id = 6;
+
+ id | actividad |  sala  | monitor_id |     fecha_hora      | plazas 
+----+-----------+--------+------------+---------------------+--------
+  6 | Yoga      | Sala 2 |          2 | 2026-11-05 09:30:00 |     10
+(1 row)
+
+gimnasio=# SELECT *
+FROM reservas
+WHERE socio_id = 8 AND clase_id = 6;
+
+ id | socio_id | clase_id | fecha_reserva 
+----+----------+----------+---------------
+(0 rows)
+
+gimnasio=# INSERT INTO reservas (socio_id, clase_id, fecha_reserva)
+VALUES (8, 6, '2026-11-02');
+
+INSERT 0 1
+
+gimnasio=# SELECT *
+FROM reservas
+WHERE socio_id = 8 AND clase_id = 6;
+
+ id | socio_id | clase_id | fecha_reserva 
+----+----------+----------+---------------
+ 18 |        8 |        6 | 2026-11-02
+(1 row)
+
+5\.Luis cancela su reserva del Yoga del lunes (clase 2). Borra solo esa reserva.
+
+gimnasio=# SELECT *
+FROM reservas
+WHERE socio_id = 2 AND clase_id = 2;
+
+ id | socio_id | clase_id | fecha_reserva 
+----+----------+----------+---------------
+  5 |        2 |        2 | 2026-10-29
+(1 row)
+
+gimnasio=# DELETE FROM reservas
+WHERE socio_id = 2 AND clase_id = 2;
+
+DELETE 1
+
+gimnasio=# SELECT *
+FROM reservas
+WHERE socio_id = 2 AND clase_id = 2;
+ id | socio_id | clase_id | fecha_reserva 
+----+----------+----------+---------------
+(0 rows)
+
+6\.Pablo se da de baja. Intenta borrarlo con DELETE FROM socios WHERE email = 'pablo@gym.com';. ¿Qué pasa? Bórralo correctamente. ¿En qué orden has tenido que borrar y por qué?
+
+gimnasio=# SELECT *
+FROM socios
+WHERE email = 'pablo@gym.com';
+ id |    dni    |    nombre    |     email     | fecha_alta | plan_id 
+----+-----------+--------------+---------------+------------+---------
+  6 | 66666666F | Pablo Martín | pablo@gym.com | 2026-06-11 |       1
+(1 row)
+
+gimnasio=# DELETE FROM socios
+WHERE email = 'pablo@gym.com';
+
+ERROR:  update or delete on table "socios" violates foreign key constraint "tarjetas_socio_id_fkey" on table "tarjetas"
+DETAIL:  Key (id)=(6) is still referenced from table "tarjetas".
+
+(La operación falla porque Pablo está registrado en otras tablas relacionadas. Hay que borralo de los otros registros primero, tanto en la tabla de tarjetas como en la tabla de reservas).
+
+gimnasio=# DELETE FROM tarjetas
+WHERE socio_id = 6;
+
+DELETE 1
+
+gimnasio=# DELETE FROM reservas
+WHERE socio_id = 6;
+
+DELETE 1
+
+gimnasio=# DELETE FROM socios
+WHERE email = 'pablo@gym.com';
+
+DELETE 1
+
+### Ejercicio B6
+
+1\.¿Qué diferencia hay entre una clave primaria y una clave UNIQUE?
+
+Una PK no puede contener valores NULL y no se puede repetir en una tabla. La UNIQUE sí que puede estar en varias columnas aunque impida que los valores se repitan.
+
+
+2\.¿Por qué una clave ajena sí puede repetirse?
+
+Porque varios registros pueden estar relacionados con el mismo registro de otra tabla.
+
+3\.En una relación 1:N, ¿en qué lado va la clave ajena? ¿Por qué no en el otro?
+
+En el lado N, porque es el que se usa luego en otra tabla derivada de ella.
+
+4\.¿Qué convierte una relación 1:N en una 1:1?
+
+Cambiar la clave ajena por una UNIQUE.
+
+5\.¿Por qué una relación N:M necesita una tabla intermedia?
+
+Porque permite relacionar varios registros de una tabla con varios de otra.
+
+6\.¿Por qué fecha_reserva está en reservas y no en socios ni en clases?
+
+Porque la fecha corresponde a una reserva concreta, no al socio ni a la clase.
