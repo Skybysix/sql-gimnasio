@@ -257,7 +257,7 @@ B3.8\.B3.6 falla y B3.7 funciona. Los dos son planes. ¿Por qué?
 
 Porque el 6 tenía un socio insertado y el 7 no.
 
-### Ejercicio B3
+### Ejercicio B4
 
 1\. 
 
