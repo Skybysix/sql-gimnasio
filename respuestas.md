@@ -141,6 +141,8 @@ Ambas son relaciones N:M y tienen tablas intermedias necesarias para que el prog
 
 1\.
 
+# PARTE B — Construirlo en PostgreSQL
+
 
 ### Ejercicio B3
 1\.INSERT INTO socios (dni, nombre, email, fecha_alta, plan_id)
