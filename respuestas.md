@@ -1,4 +1,4 @@
-# Respuestas — Gimnasio
+# Entrega: SQL — Diseña la base de datos de un gimnasio
 
 ## PARTE A — Pensar antes de escribir SQL
 
@@ -382,3 +382,4 @@ actividad |     fecha_hora      |  sala  |    monitor
 11\.En la consulta 6, Ana sale tres veces. ¿Es un error? ¿Por qué ocurre?
 No es un error. Ana tiene tres actividades reservadas.
 
+### Ejercicio B5
