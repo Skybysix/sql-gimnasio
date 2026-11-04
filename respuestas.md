@@ -8,17 +8,17 @@ Mirando la tabla de arriba:
 
 1\. ¿Qué columnas no se pueden repetir nunca?
 
-ID, DNI y email
+ID, DNI y email.
 
 2\. ¿Cuál es la clave primaria? ¿Cuáles son claves alternativas?
 
-Clave primaria - id
+Clave primaria - id.
 
-Alternativa - dni y email
+Alternativa - dni y email.
 
 3\. ¿Qué columna apunta a otra tabla? ¿A cuál?
 
-La de plan_id, apuntará a otra tabla que tenga ese id
+La de plan_id, apuntará a otra tabla que tenga ese id.
 
 4\. El DNI ya identifica a cada socio. ¿Por qué crees que usamos un `id` numérico como clave primaria en vez del DNI? Da al menos una razón.
 
@@ -58,11 +58,11 @@ Solo se puede guardar un id en la clave ajena. Si se coloca en el lado equivocad
 
 4\. ¿Debe ser NOT NULL? ¿Por qué?
 
-Sí, necesita que haya un valor dentro sí o sí, sino da error
+Sí, necesita que haya un valor dentro sí o sí, sino da error.
 
 5\. ¿Qué tabla hay que crear primero?
 
-Primero hay que crear la tabla de monitores
+Primero hay que crear la tabla de monitores.
 
 ---
 
@@ -70,7 +70,7 @@ Primero hay que crear la tabla de monitores
 
 1\. ¿Qué pasaría si quitásemos UNIQUE de socio_id? Explícalo con un ejemplo de datos.
 
-Se volvería una relación 1:N. Un socio podría tener varias tarjetas a la vez
+Se volvería una relación 1:N. Un socio podría tener varias tarjetas a la vez.
 
 2\. Hay dos columnas UNIQUE en tarjetas. ¿Qué evita cada una?
 
@@ -148,7 +148,7 @@ VALUES ('99999999Z', 'Nora Prueba', 'nora@gym.com', '2026-10-27', 99);
 
     a\.Qué creo que pasará:
 
-    Va a fallar porque no existe el id 99
+    Va a fallar porque no existe el id 99.
 
     b\.Código de error y explicación:
 
@@ -164,7 +164,7 @@ VALUES ('99999999Z', 'Nora Prueba', 'ana@gym.com', '2026-10-27', 1);
 
     a\.Qué creo que pasará:
 
-    Va a fallar porque no se puede repetir un correo electrónico al ingresar un socio nuevo
+    Va a fallar porque no se puede repetir un correo electrónico al ingresar un socio nuevo.
 
     b\.Código de error y explicación:
 
@@ -177,44 +177,64 @@ VALUES ('TJ-0099', TRUE, 1);
 
     a\.Qué creo que pasará:
 
-    Solo un socio puede tener una tarjeta
+    Solo un socio puede tener una tarjeta.
 
     b\.Código de error y explicación:
 
     ERROR: Valor de clave duplicado que infringe la restricción de unicidad tarjetas_socio_id_key.
     DETAIL: La clave (socio_id) = (1) ya existe.
-    (No se puede duplicar la clave porque solo un socio puede tener una tarjeta)
+    (No se puede duplicar la clave porque solo un socio puede tener una tarjeta).
 
 
 4\.
 
     a\.Qué creo que pasará:
-    Ya hay una informacion en una tabla 
+
+    Ya hay una informacion en una tabla de reservas con la reserva hecha.
 
     b\.Código de error y explicación:
 
+    ERROR: Valor de clave duplicado que infringe la restricción de unicidad reservas_socio_id_clase_id_key.
+    DETAIL: La combinación de claves (socio_id, clase_id) = (1, 1) ya existe.
+    (La combinación de claves del socio ya existe en la base de datos).
 
 5\.
 
     a\.Qué creo que pasará:
 
+    La clase no existe. No hay ningúna fecha programada.
+
 
     b\.Código de error y explicación:
+
+    ERROR: La inserción o actualización en la tabla reservas infringe la restricción de clave ajena reservas_clase_id_fkey.
+    DETAIL: La clave (clase_id) = (50) no está presente en la tabla clases.
+    (El id de la clase no existe en la base de datos).
 
 
 6\.
 
     a\.Qué creo que pasará:
 
+    No se puede borrar porque es una clave primaria.
+
 
     b\.Código de error y explicación:
+
+    ERROR: La actualización o eliminación en la tabla planes infringe la restricción de clave ajena socios_plan_id_fkey de la tabla socios.
+    DETAIL: La clave (id) = (1) sigue estando referenciada desde la tabla socios.
+    (No se puede eliminar el plan porque hay socios asignados en él).
 
 7\.
 
     a\.Qué creo que pasará:
 
+    No dejará porque hay socios asignados.
 
     b\.Código de error y explicación:
+
+    DELETE 1
+    (Se ha eliminado porque no hay socios asignados).
 
 8\.
 
